@@ -1,0 +1,26 @@
+1.All users whose gender is male
+  db.users33.find({gender:{$eq:"Male"}}).pretty();
+
+2.all users whose ID is even 
+  db.users33.find({$id:{$eq:"Even"}}).pretty();
+  
+3.Users who currently live in Japan
+   db.users33.find({relocate_to:"Japan"}}).pretty();
+
+4.Users who are female and live in India
+    db.users33.find({$and:[{gender:"Female"},{relocate_to="India"}]}).pretty()
+
+5.Users who are more than 25 years old
+  db.users33.find({age:{$gt:25}}).pretty()
+
+6.Users who are less than 50 years old and live in United State
+ db.users33.find({$and:[{age:{$lt:50}},{native:"United States"}}]}).pretty()
+
+7.Total number of users who want to relocate to France (count only)
+   db.users33.find({relocate_to="France"}).pretty().count()
+
+8.Total number of users who are from USA and want to relocate to russia, sort them by age in ascending order
+    db.users33.find({$and:[{native:"United States"},{relocate_to="Russia"}]}).sort({"age":1}).pretty()
+
+9.get all users, sort them by total number of family member ASC and age DESC order
+     db.users33.find().sort({"family_members":1},{"age":1}).pretty()
