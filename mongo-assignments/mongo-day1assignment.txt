@@ -1,0 +1,8 @@
+1.Creating a Database
+  use data
+2.Adding one Collection to it.
+  db.createCollection("users22")
+3.Inserting one Document in it.
+  db.users22.insertOne({name: "John", age:"30"})
+4.Showing the entered Document.
+  db.users22.find().pretty()
