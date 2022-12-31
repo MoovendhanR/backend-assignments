@@ -1,0 +1,10 @@
+const {add,sub,mult,div,getCircleX,getCircleY,getTanFromDegrees,getRandom} =require('./data')
+
+add(1,1)
+sub(10,5)
+mult(10,5)
+div(10,5)
+getCircleX(1,10)
+getCircleY(1,10)
+getTanFromDegrees(10)
+getRandom(5,10)
