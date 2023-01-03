@@ -66,6 +66,7 @@ const commentSchema = new mongoose.Schema(
     },
 },
 { 
+  versionKey:false,
   timestamps:true,
 }
 );
@@ -84,7 +85,8 @@ const Comment = mongoose.model('comment',commentSchema)
 app.get('/users',async(req, res) => {
   try{
     const users = await User.find().lean().exec();
-     res.status(200).send({users: users})
+    res.status(200).send({users: users})
+     // console.log(users.find({firstName:"nari"}))
   }catch(err){
     return res
     .status(500)
@@ -129,6 +131,41 @@ app.post('/posts',async(req, res) => {
       res.status(500).send({message:err.message})
     }
 })
+
+
+
+app.get('/users/:id',async(req, res) => {
+  try{
+   // console.log(req.params)
+    const user = await User.findById(req.params.id);
+    res.status(200).send( user)
+     // console.log(users.find({firstName:"nari"}))
+  }catch(err){
+    return res
+    .status(500)
+    .send({message:err.message})
+
+  }
+})
+
+
+
+app.patch('/users/:id',async(req, res) => {
+  try{
+   // console.log(req.params)
+    const user = await User.findByIdAndUpdate(req.params.id,req.body,{new:true});
+    //new:true instant update
+    res.status(200).send( user)
+     // console.log(users.find({firstName:"nari"}))
+  }catch(err){
+    return res
+    .status(500)
+    .send({message:err.message})
+
+  }
+})
+
+
 
 
 
