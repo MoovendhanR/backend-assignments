@@ -108,6 +108,29 @@ app.post('/users',async(req, res) => {
 })
 
 
+//posts
+app.get('/posts',async(req, res) => {
+  try{
+    const posts = await Post.find().lean().exec();
+     res.status(200).send({posts: posts})
+  }catch(err){
+    return res
+    .status(500)
+    .send({message:"something went wrong"})
+
+  }
+});
+app.post('/posts',async(req, res) => {
+    try{
+      const  post= await Post(req.body)
+      res.status(201).send({post: post})
+
+    }catch(err){
+      res.status(500).send({message:err.message})
+    }
+})
+
+
 
 mongoose.set('strictQuery', false);
 app.listen(5000,async()=>{
