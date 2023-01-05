@@ -1,6 +1,7 @@
 const express=require('express');
 const mongoose=require("mongoose")
-const{connect,Hero} = require('./models/heroSchema.js')
+const{Hero} = require('./models/heroSchema.js')
+const {connect} = require('./connect')
 
 const app = express();
 
@@ -90,13 +91,13 @@ app.get("/heros",async(req,res) => {
 
 app.post("/heros",async(req,res) => {
     try{
-    // const hero=await Hero.create(req.body);
-    // res.status(201).send(hero)
-    // console.log("data added successfully")
-    const data=req.body;
-    const hero =new Hero(data);
-    await hero.save();
-    res.status(200).send(hero);
+        const hero = await Hero.create(req.body)
+        res.status(201).send({hero:hero})
+        console.log("data added successfully")
+    // const data=req.body;
+    // const hero = Hero(data);
+    // await hero.save();
+    // res.status(200).send(hero);
 
 }catch(err){
     res.status(500).send({message:err.message});
@@ -107,6 +108,6 @@ app.post("/heros",async(req,res) => {
 
 mongoose.set("strictQuery",false)
 app.listen(3000,()=>{
-    connect();
+    connect;
     console.log("listening on 3000 port")
 })

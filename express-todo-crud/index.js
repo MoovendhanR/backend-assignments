@@ -7,6 +7,7 @@ app.use(express.json())
 const connect=()=>{
   return mongoose.connect(
     "mongodb+srv://dhaval:dhaval_123@cluster0.ljuvz.mongodb.net/web15-atlas?retryWrites=true&w=majority",
+    // "mongodb://127.0.0.1:27017/masaidb",
     {useNewUrlParser: true}
     );
 }
@@ -191,7 +192,10 @@ app.post('/posts',async(req, res) => {
 app.get('/posts/:id',async(req, res) => {
   try{
    // console.log(req.params)
-    const post = await Post.findById(req.params.id).lean().exec();
+    const post = await Post.findById(req.params.id)
+    .populate("userId")
+    .lean()
+    .exec();
     res.status(200).send(post)
      // console.log(users.find({firstName:"nari"}))
   }catch(err){
@@ -226,11 +230,22 @@ app.delete("/posts/:id",async(req,res)=>{
     }
 })
 
+//getting all comments
+
+
 //COMMENTS crud
 app.get("/comments",async(req, res)=>{
   try{
     const comments = await Comment.find()
-    .lean()
+    .populate({
+      path:"postId",
+      select:["title"],//nested populate
+      populate:{path:"userId",select:["firstName"]}
+    })
+    .populate({
+      path:"userId",
+      select:{firstName:1,_id:1,email:1}
+    })    .lean()
     .exec();
     res.status(200).send({comments: comments});
 
@@ -252,9 +267,40 @@ app.post("/comments",async(req, res)=>{
        .send({message:err.message});
   }
 })
+
+
+app.get("/comments/:id",async(req, res)=>{
+  try{
+  const comment=await Comment.findById(req.params.id)
+  .populate({
+    path:"postId",
+    select:["title"],//nested populate
+    populate:{path:"userId",select:["firstName"]}
+  })
+  .populate({path:"userId",select:["firstName","email"]})
+  .lean()
+  .exec();
+  res.status(200).send(comment);
+  }catch(err){
+    res.status(500).send({message:err.message});
+  }
+})
+
+
+
 app.patch("/comments/:id",async(req, res)=>{
   try{
-  const comment=await Comment.findByIdAndUpdate(req.params.id,req.body,{new:true}).lean().exec();
+  const comment=await Comment.findByIdAndUpdate(req.params.id,req.body,{new:true})
+  .populate({
+    path:"postId",
+    select:["title"],//nested populate
+    populate:{path:"userId",select:["firstName"]}
+  })
+  .populate({
+    path:"userId",
+    select:{firstName:1,_id:0,email:1}
+  })
+  .lean().exec();
   res.status(200).send(comment);
   }catch(err){
     res.status(500).send({message:err.message});
@@ -263,7 +309,18 @@ app.patch("/comments/:id",async(req, res)=>{
 
 app.delete("/comments/:id",async(req, res)=>{
   try{
-  const comment=await Comment.findByIdAndDelete(req.params.id).lean().exec();
+  const comment=await Comment.findByIdAndDelete(req.params.id)
+  .populate({
+    path:"postId",
+    select:["title"],//nested populate
+    populate:{path:"userId",select:["firstName"]}
+  })
+  .populate({
+    path:"userId",
+    select:{firstName:1,_id:0,email:1}
+  })
+  .lean()
+  .exec();
   res.status(200).send(comment);
   }catch(err){
     res.status(500).send({message:err.message});
