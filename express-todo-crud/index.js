@@ -231,7 +231,28 @@ app.delete("/posts/:id",async(req,res)=>{
 })
 
 //getting all comments
+app.get("/posts/:postId/comments",async(req, res)=>{
+  try{
 
+    const comments = await Comment.find({postId: req.params.postId})
+    .populate({
+      path:"postId",
+      select:["title"],//nested populate
+      populate:{path:"userId",select:["firstName"]}
+    })
+    .populate({
+      path:"userId",
+      select:{firstName:1,_id:0,email:1}
+    })
+    .lean().exec();
+    res.status(200).send({comments:comments});
+
+   }catch(err){
+     res
+     .status(500)
+     .send({message:err.message});
+   }
+})
 
 //COMMENTS crud
 app.get("/comments",async(req, res)=>{
