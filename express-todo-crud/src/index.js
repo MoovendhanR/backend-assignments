@@ -1,5 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config()
+// console.log(process.env.port)
+
 const app = express();
 
 const usersController=require('./Controllers/user.controllers.js');
@@ -37,11 +40,11 @@ app.use("/comments",commentController);
 
 
 mongoose.set('strictQuery', false);
-app.listen(5000,async()=>{
+app.listen(process.env.port,async()=>{
   try{
     await connect();
   }catch(err){
     console.log(err);
   }
-  console.log("listening on port 5000")
+  console.log(`listening on port ${process.env.port}`)
 })
