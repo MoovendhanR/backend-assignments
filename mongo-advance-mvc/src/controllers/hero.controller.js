@@ -28,6 +28,18 @@ app.post('/', async (req, res) => {
 
 })
 
+app.get('/:id', async (req, res) => {
+    
+    try{
+        const hero=await Hero.findById(req.params.id).lean().exec();
+        res.status(200).send(hero);
+
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+
+})
+
 
 app.patch('/:id', async (req, res) => {
     
