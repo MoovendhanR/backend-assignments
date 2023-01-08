@@ -14,12 +14,35 @@ router.get('/',async(req, res)=>{
      }
 })
 
-router.post('/',uploads.single("profilePic"),async(req, res)=>{
+router.post('',uploads.single("profilePic"),async(req, res)=>{
     try{
-        console.log(req.body);
-        console.log(req.file)
-         const user=await User.create(req.body);
-         res.status(200).send("users");
+     
+        // console.log(req.body);
+        // console.log(req.file)
+         const user=await User.create({
+            firstName: req.body.firstName,
+            profilePic: req.file.path,
+         });
+        return res.status(200).send(user);
+
+     }catch(error){
+        res.status(500).send({error:error.message});
+     }
+})
+
+
+router.post('/multiple',uploads.any("profilePic"),async(req, res)=>{
+    try{
+           const filePaths = req.files.map((file)=>{
+            // console.log({file});
+            return file.path;
+           })
+              console.log({filePaths})
+         const user=await User.create({
+            firstName:req.body.firstName,
+            profilePic:filePaths,
+         });
+         res.status(200).send(user);
 
      }catch(error){
         res.status(500).send({error:error.message});

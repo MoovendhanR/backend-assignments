@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
     // To accept the file pass `true`, like so:
   
     // You can always pass an error if something goes wrong:
-    // callback(new Error('I don\'t have a clue!'))
+     callback(new Error('I don\'t have a clue!'))
   
   }
 
