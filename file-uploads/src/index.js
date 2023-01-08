@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const express = require('express');
 require('dotenv').config()
 const app = express();
+app.use(express.json());
 const userController = require('./controllers/user.controller.js')
 
-app.use("users",userController);
+app.use("/users",userController);
 
 const PORT = process.env.port;
 mongoose.set("strictQuery",false)
