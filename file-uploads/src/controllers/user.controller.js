@@ -14,9 +14,11 @@ router.get('/',async(req, res)=>{
      }
 })
 
-router.post('/',uploads,async(req, res)=>{
+router.post('/',uploads.single("profilePic"),async(req, res)=>{
     try{
-        //  const user=await User.create(req.body);
+        console.log(req.body);
+        console.log(req.file)
+         const user=await User.create(req.body);
          res.status(200).send("users");
 
      }catch(error){
