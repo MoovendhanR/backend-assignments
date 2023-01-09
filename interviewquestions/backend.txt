@@ -1,0 +1,45 @@
+1.What is non-blocking vs blocking?
+   Blocking call waits for the I/O operation to complete before returning.
+   Its results are returned synchronously. Nothing else in that process takes 
+   place during the waiting. In contrast, non-blocking call returns immediately 
+   without results and uses alternate means to check for completion.
+
+2.What is throughput?
+///////
+
+3.what is the difference between readFile and readFileSync?
+  readFileSync() is synchronous and blocks execution until finished. 
+  These return their results as return values. 
+  readFile() are asynchronous and return immediately while they function in the background.
+   You pass a callback function which gets called when they finish.
+
+4.How can you make a network request using http module?
+  NodeJS have built in HTTP module to make network request. But the drawbacks is that, it is not too user friendly like the other solution. You, need to manually parse the data after received. Installing module: It is a built-in module, doesn't need to install.
+
+5.How to create a web server without express?
+////
+
+6.What is libuv?
+ libuv is a multi-platform C library that provides support for asynchronous I/O based on event loops. It supports epoll(4) , kqueue(2) , Windows IOCP, and Solaris event ports. It is primarily designed for use in Node. js but it is also used by other software projects.
+  written in c.
+
+7.What are the different phases involved in event loop?
+ The Event Loop contains six main phases: timers, I/O callbacks, preparation / idle phase, I/O polling, setImmediate() callbacks execution, and close events callbacks.
+
+ 8.What are timers in Node.js?
+ The Timers module in Node. js contains functions that execute code after a set period of time. Timers do not need to be imported via require() , since all the methods are available globally to emulate the browser JavaScript API.
+
+9.What is NVM? how do you use it?
+  Node Version Manager (NVM) is a tool used to manage multiple active Node.
+...
+NVM allows users to:
+Locally download any of the remote Long Term Support (LTS) versions of Node. ...
+Easily switch between multiple versions of Node.
+
+10.What is common.js? how is it different from es modules?
+//
+
+11.How does the crypto module work?
+  The crypto module is a wrapper for OpenSSL cryptographic functions. It supports calculating hashes, authentication with HMAC, ciphers, and more! The crypto module is mostly useful as a tool for implementing cryptographic protocols such as TLS and https.
+
+
