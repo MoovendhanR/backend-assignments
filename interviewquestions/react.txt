@@ -108,3 +108,69 @@ get called.
 -A React component is considered pure if it renders the same output for the same state and props.
 -for this type of class component ,React provides the PureComponent base class.
 -class component that extend the React.PureComponent class are treated as pure components.
+
+19.How does Context API work? What does it solve?
+ -the react context api is a way for a React app to effectively produce global variables that can be passed around.
+ -This is the alternative to "prop drilling" or moving props from grandparent to child to parent, and so on.
+ -Context is also touted as an easier,lighter approach to state management using Redux.
+
+ 20.what is props drilling?
+ -prop drilling is the unofficial term for passing data through several nested childern components.
+ -React developers often(அடிக்கடி) encounter scenarios where they must pass data/state from a top-level component 
+  to a deeply nested component. Prop drilling refers to transporting this data/state as props to the intended 
+  destination through intermediate components.
+
+21.What does useReducer do?
+-useReducer returns an array that holds the current state value and a dispatch function to which you can pass an action
+-and later invoke it.while this is similar to the pattern Redux uses,there are few deference.
+-for Ex.
+    the useReducer function is tightly coupled to a specific reducer.
+
+22.When do you use useReducer vs useState?
+-useReducer is usually preferable to useState when you have complex state logic that involves multiple sub-values or when the next state 
+ depends on the previous one.
+-useReducer also lets you optimize perfromance for components that trigger deep updates because you can pass dispatch that trigger deep updates  
+because you can pass dispatch down instead of callbacks.
+
+23.How do you use Profiler?
+-A Profiler can be added  anywhere in a React tree to measure the cost of rendering that part of the tree.It requires two props,    
+-an id(sting) and an onRender callback(function) when React calls anytime a component within the tree "commitzs" an updates.
+
+24.What is dispatcher?
+-the dispatcher is the center point of the data flow in a flux application.its essentially a registry of callbacks, 
+  and can invoke these callbacks in order. 
+-each store registers a callback with the dispatcher. 
+
+25.What is flux architecture?
+-Flux is a Javascript architecture or pattern for UI(user interface) which runs on a unidirectional data flow 
+ and it has a centralized dispatcher.
+-it is usefull when your project has dynamic data and you need to keep the data updated in an effective manner.
+-it was created by facebook uses for build client-side web application.
+
+26.What are side effects? in react.  
+-side effects are not pridictable because they are actions which are performed with the "outsside world".  
+-we perform a side effect when we need to reach outside of your react componments to do something.
+-performing a side effect,however,will not give us a pridictable result.
+
+27.What does lazy loading mean?
+-in essence, lazy loading means that a component or a part of code must get loaded when it is required.
+-its also referred(குறிப்பிடப்பட்ட) to as code spliting and data fetching.
+-Talking about React specially,it bundles the complete code and deploys all of it at the same time.
+
+28.What are thunks? Why do you need them?
+-thunks are the standard approach for writting async logic in Redux apps and are commonly used for data fetching.
+ However, they can be used for a 
+ variety of tasks,and can contain both synchronous and asynchronous logic.
+-The most common use case for Redux Thunk is for communicating asynchronously with an 
+  external API to retrieve or save data
+
+ 29.What does webpack do?
+-webpack is a tool that lets you compile javascript modules, also known as module bundler.given a large number of files,
+ it generates a single file  that run your app.  
+-it can perform many operations:helps you bundle your resources.
+
+30.What does babel do?
+-Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible(இணக்கமான)
+  version of javascript in current and older browsers or environments. 
+-Programming languages used:javascript
+-type:compiler.
