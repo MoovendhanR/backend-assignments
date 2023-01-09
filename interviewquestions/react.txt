@@ -75,3 +75,36 @@ react component memoizes it depending on your props.
  *on every component render.
  *on every component render with a conditions.
  *when component is unmounted 
+
+ 11.How does Routing work with react?
+-React router is mainly used for developing single page applications.React Router is 
+ used to define multiple routes in the application.
+-When a user types a specific URL into the browser,and if this URL path matches any "route" 
+ inside the root file,the user will be redirected to that particular route.
+
+12.What is SSR and CSR?
+   server side rendering                       client side rendering
+-ideal(ஏற்றதாக) for sites serving only   -ideal(ஏற்றதாக) for web apps.
+ static(நிலையான) content
+-Fast initial page load.                   -Fast rendering after initial page load.
+-no js dependency                          -rich site interaction 
+-Easy for search engine bots to 
+crawl and index a site because the         -Reduces server load.
+content exists before the user  
+receive it-more straightforward SEO
+
+13.What are the lifecycle methods in class components?
+-There are three categories of lifecycle methods:mounting,updating,unmounting.
+-A component "mounts" when it renders for the first time.this is when mounting lifecycle methods
+get called.  
+-The first time the component instance a renders,it does not update.
+
+14.What are dependencies in useEffect?
+-useEffect(callback,dependencies) is the hook that manages side effects in functional components.
+-callback argument is a function to put the side-effects logic.
+-dependencies is a list of dependencies of your side-effect:being props or state value.
+
+15.What is a pure component?
+-A React component is considered pure if it renders the same output for the same state and props.
+-for this type of class component ,React provides the PureComponent base class.
+-class component that extend the React.PureComponent class are treated as pure components.
