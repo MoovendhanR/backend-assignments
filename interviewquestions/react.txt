@@ -1,0 +1,77 @@
+1.What is React? 
+ -known as React.js or ReactJs,it is a free and open source front-end
+ javascript library for building user interface based UI components
+ -it was created by Facebook the author name jordan walke & its maintained 
+ by meta a community of individual developers and companies.
+ -single-page application,views based,server side rendered application
+
+ 2.What is JSX?
+-its stands for javascriptxml,its a syntax extension for javascript
+-jsx allows us to write HTML in React,jsx makes easier to write and add HTML in React.
+-jsx allows us to write HTML elements in javascript, place them in the dom without an 
+ createElement() and/or appendChild() methods.
+-you are not required to write jsx,but jsx makes easier to write React application.
+
+3.What is the difference between Props and state?
+          props                                 state      
+-the datails passed one components to     -the data is passed within a component
+ another component.
+-it is immutable.                        -its mutable.
+-props can be used with  state and       -state can be used with the statecomponent/
+ functional components.                      class components
+-props can be reads only.                -state is both read and write.
+
+4.What is Conditional Rendering?
+-In react ,you can create distinct components that encapsulate behavior you need,
+-Then you can render only some of them,depending on the state of your application.
+-Conditional rendering in React working the same way conditions work in javascript.
+ex.
+function Greeting(props){
+  const isLoggedIn = props.isLoggedIn;
+  if(isLoggedIn){
+    return <UserGreeting />;
+   }
+  return <GuestGreeting />;
+} 
+
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+// Try changing to isLoggedIn={true}:
+root.render(<Greeting isLoggedIn={false} />); 
+
+5.Explain how lists work in React?
+-lists are used to display data in order format and mainly used to display menus
+on websites.
+-In React,Lists can be created in similar way as we create lists in javascript.
+ex:
+var numbers = [1, 2, 3, 4, 5];   
+const multiplyNums = numbers.map((number)=>{   
+    return <> 
+    <li>{number * 5}</li>
+    </> 
+});
+
+6.What are keys in React?
+-A key is a unique identifier.In React,it is used to identify which items have changed,
+updated,or deleted from the lists. 
+-it is useful when we dynamically created components or when the user alter the lists.
+
+7.What is memoisation in react?
+-memoisation is an feature in React which,when used in the right place,
+increases the perfromance of the program.
+-React gives us purecomponent and memo to implement memoisation.purecomponent is used 
+with the class component and memo is used functional component.
+
+8.What is the difference between react.memo and react.useMemo?
+-In useMemo it remember the return value between renders, and in React.memo it remembers
+the react component between renders.react.memo is higher-order component that accepts a 
+react component memoizes it depending on your props.
+
+9.What are the parameters that react memo takes?
+   It takes two parameter one is callback function and second is a dependency
+
+10.What are the different ways to apply useEffect?
+-there are four ways to apply useEffect.
+ *once, when component mounts
+ *on every component render.
+ *on every component render with a conditions.
+ *when component is unmounted 
