@@ -25,14 +25,52 @@ app.post("/register",async(req, res) => {
     }
 })
 app.post("/login",async(req, res) => {
+    const {email, password} = req.body
     try{
           const user = await User.find({email,password})
+          if(user.length>0){
+          res.status(201).send({user:user})
+          }else{
+             res.send("wrong credential")
+          }
     }catch(err){
        res.status(500).send({message:err.message});
     }
 })
 
+app.get("/about",async(req, res) => {
+    try{
+          const user = await User.find({email,password})
+          res.status(201).send({user:user})
+    }catch(err){
+       res.status(500).send({message:err.message});
+    }
+})
+app.get("/data",async(req, res) => {
+    const token=req.query.token;
+    try{
+          if(token === "abc123"){
+                
+          }
+          res.status(201).send({user:user})
+    }catch(err){
+       res.status(500).send({message:err.message});
+    }
+})
+
+app.get("/contact",async(req, res) => {
+    try{
+          const user = await User.find({email,password})
+          res.status(201).send({user:user})
+    }catch(err){
+       res.status(500).send({message:err.message});
+    }
+})
+
+
+
 mongoose.set("strictQuery",false)
+
 app.listen(5000,async() => {
    await connect()
     console.log("listening on port 5000")
