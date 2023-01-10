@@ -27,9 +27,10 @@ app.post("/register",async(req, res) => {
 app.post("/login",async(req, res) => {
     const {email, password} = req.body
     try{
-          const user = await User.find({email,password})
+          const user = await User.find({email,password});
+          var token = jwt.sign({ course: 'bar' }, 'shhhhh');
           if(user.length>0){
-          res.status(201).send({user:user})
+          res.status(201).send({"mes":"login successfull","token":token});
           }else{
              res.send("wrong credential")
           }
