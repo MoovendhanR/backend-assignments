@@ -174,3 +174,86 @@ because you can pass dispatch down instead of callbacks.
   version of javascript in current and older browsers or environments. 
 -Programming languages used:javascript
 -type:compiler.
+
+
+
+31.Can web browsers read JSX directly? ...
+ -Browsers can only read JavaScript objects but JSX in not a regular JavaScript object. Thus to enable a browser to read JSX,
+ first, we need to transform JSX file into a JavaScript object using JSX transformers like Babel and then pass it to the browser.
+ ``````````````````````````````````````````````````````````````````````````````````````
+32.What are the features of React? ...
+     1.JSX (JavaScript Syntax Extension)
+     2.Virtual DOM
+     3.One-way data binding(this is an effortless way of implementing data binding.)
+     4.Performance
+     5.Extensions
+     6.Conditional statements
+     7.Components
+     8.Simplicity 
+
+33.Why use React instead of other frameworks, like Angular? ...
+-React is better than Angular due to it's virtual DOM implementation and rendering optimizations. 
+ Migrating between React's versions is quite easy, too; you don't need to install updates one by one, as in the case of Angular.
+-Finally, with React, developers have myriads of existing solutions they can use.
+
+34.What is the difference between the ES6 and ES5 standards? ...
+1.	ECMA script is a trademarked scripting language    1.ECMA script is a trademarked scripting language specification 
+    specification defined by Ecma international.         defined by Ecma international.
+    The fifth edition of the  same is known as ES5       The sixth edition of the same is known as ES6 
+2.	It was introduced in 2009.	                       2.It was introduced in 2015.
+3.	It supports primitive data types that are          3.In ES6, there are some additions to JavaScript data types. 
+    string, number, boolean, null, and undefined. 	     It introduced a new primitive data type ‘symbol’ for supporting unique values.
+4.	There are only one way to define the variables     4.There are two new ways to define variables that are let and const.
+    by using the var keyword.	
+5.	It has a lower performance as compared to ES6.	   5.It has a higher performance than ES5.
+6.	Object manipulation is time-consuming in ES5.	     6.Object manipulation is less time-consuming in ES6.
+7.	In ES5, both function and return keywords          7.An arrow function is a new feature introduced in ES6 by which we 
+    are used to define a function.                       don’t require the function keyword to define the function.
+8.	It provides a larger range of community            8.It provides a less range of community supports than that of ES5
+    supports than that of ES6	
+
+35. What are the components in React?
+-Components are the building blocks of any React application, and a single app usually consists of multiple components. 
+-A component is essentially a piece of the user interface. 
+-It splits the user interface into independent, reusable parts that can be processed separately. 
+There are two types of components in React:
+ 1.react-component
+Functional Components: These types of components have no state of their own and only contain render methods, and therefore are also called stateless components. 
+They may derive data from other components as props (properties).
+function Greeting(props) {
+  return <h1>Welcome to {props.name}</h1>;
+}
+2.Class Components: These types of components can hold and manage their own state and have a separate render method to return JSX on the screen.
+ They are also called Stateful components as they can have a state.
+ class Greeting extends React.Component {
+  render() {
+    return <h1>Welcome to {this.props.name}</h1>;
+  }
+
+36. What is a higher-order component in React?
+A higher-order component acts as a container for other components. This helps to keep components simple and enables re-usability. 
+They are generally used when multiple components have to use a common logic.
+
+37.virtual dom   vs   real dom?
+    virtual DOM                              Real DOM
+ 1.change can be made easily             1.change can be expensive. 
+ 2.minimal memory wastage                2.high demand for memory and memory wastage 
+ 3.jsx element is updated if the         3.creates a new dom every time an element is get updated. 
+ element is exist.
+ 4.cannot update html directly           4.able to directly manipulate.
+ 5.faster update                         5.slower update
+
+ 38.What Exactly Is a Temporal Dead Zone in JavaScript?
+  -A temporal dead zone (TDZ) is the area of a block where a variable is inaccessible until the moment
+   the computer completely initializes(start) it with a value.
+
+39.what is useState?
+-useState is a Hook that allows you to have state variables in functional components. 
+-useState accepts an initial state and returns two values:
+-The current state.
+-A function that updates the state.
+
+40.what is useEffect?
+-The useEffect Hook allows you to perform side effects in your components. 
+-some examples of side effects are: fetching data, directly updating the DOM, and timers. useEffect accepts two arguments. 
+-The second argument is optional. useEffect(<function>, <dependency>) 
