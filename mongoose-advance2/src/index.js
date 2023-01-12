@@ -30,7 +30,7 @@ app.post("/login",async(req, res) => {
     const {email, password} = req.body
     try{
           const user = await User.find({email,password});
-          var token = jwt.sign({ course: 'bar' }, 'shhhhh');
+          var token = jwt.sign({ course: 'backend' }, 'masai');//payload ,secret key
           if(user.length>0){
           res.status(201).send({"mes":"login successfull","token":token});
           }else{
