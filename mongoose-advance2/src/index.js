@@ -30,7 +30,7 @@ app.post("/login",async(req, res) => {
     const {email, password} = req.body
     try{
           const user = await User.find({email,password});
-          var token = jwt.sign({ course: 'backend' }, 'masai');//payload ,secret key
+          const token = jwt.sign({ course: 'backend' }, 'masai');//payload ,secret key
           if(user.length>0){
           res.status(201).send({"mes":"login successfull","token":token});
           }else{
@@ -50,24 +50,29 @@ app.get("/about",async(req, res) => {
     }
 })
 app.get("/data",async(req, res) => {
-    const token=req.query.token;
-    try{
-          if(token === "abc123"){
-                
-          }
-          res.status(201).send({user:user})
-    }catch(err){
-       res.status(500).send({message:err.message});
-    }
+       var token=req.headers.Authorization
+jwt.verify(token,"masai",(err,decoded)=>{
+if(err){
+res.send("Invalid Token")
+console.log(err)
+} else {
+res.send("Data ....")
+}
+})
+
 })
 
 app.get("/contact",async(req, res) => {
-    try{
-          const user = await User.find({email,password})
-          res.status(201).send({user:user})
-    }catch(err){
-       res.status(500).send({message:err.message});
-    }
+   var token=req.headers.authorization
+   jwt.verify(token,"batman",(err,decoded)=>{
+   if(err){
+   res.send("Invalid Token")
+   console.log(err)
+   } else {
+   res.send("contact....")
+   }
+   })
+   
 })
 
 
