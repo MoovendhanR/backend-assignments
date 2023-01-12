@@ -2,6 +2,8 @@ const express =require('express');
 const connect = require('./config/db');
 const mongoose = require('mongoose');
 const User = require('./models/user.model');
+const jwt=require("jsonwebtoken")
+
 
 
 const app = express();
