@@ -28,8 +28,8 @@ router.post("/login",async(req, res) => {
     const {email, password} = req.body
     try{
           const user = await User.find({email,password});
+          const token = jwt.sign({ course: 'backend' }, 'masai');//payload ,secret key
           if(user.length>0){
-             const token = jwt.sign({ course: 'backend' }, 'masai');//payload ,secret key
           res.status(201).send({"mes":"login successfull","token":token});
           }else{
              res.send("wrong credential")
@@ -48,7 +48,7 @@ router.get("/about",async(req, res) => {
     }
 })
 router.get("/data",async(req, res) => {
-       var token=req.headers.Authorization
+var token=req.headers.authorization
 jwt.verify(token,"masai",(err,decoded)=>{
 if(err){
 res.send("Invalid Token")
@@ -61,8 +61,8 @@ res.send("Data ....")
 })
 
 router.get("/contact",async(req, res) => {
-   var token=req.headers.authorization
-   jwt.verify(token,"masai",(err,decoded)=>{
+    var token=req.headers.authorization
+    jwt.verify(token,"masai",(err,decoded)=>{
    if(err){
    res.send("Invalid Token")
    console.log(err)
