@@ -24,9 +24,17 @@ router.post('/create', async(req, res) => {
 })
 
 router.patch('/edit/:id', async(req, res) => {
+    //error here
+    const note1 = await Notes.findById(req.params.id)
+    const userID_in_note=note1.userID;
+    const userID_making_req=req.body.userID;
     try{
-        const note=await Notes.findByIdAndUpdate(req.params.id, req.body, {new:true}).lean().exec();
-        res.status(200).send(note);
+        if(userID_making_req !== userID_in_note){
+            res.status(201).send({"msg":"you are not authoriazed"})
+        }else{
+            const note=await Notes.findByIdAndUpdate(req.params.id, req.body, {new:true}).lean().exec();
+            res.status(200).send(note);
+        }
     }catch(err){
         res.status(500).send({message:err.message})
     }

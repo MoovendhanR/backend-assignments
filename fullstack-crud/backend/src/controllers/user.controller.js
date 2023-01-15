@@ -40,7 +40,7 @@ router.post("/login",async(req, res) => {
             bcrypt.compare(password, hashed_password, (err, result) => {
                 // result == true
                 if(result) {
-                    const token = jwt.sign({ course: 'backend' }, 'masai');//payload ,secret key
+                    const token = jwt.sign({ userID: user[0]._id }, 'masai');//payload ,secret key
                     res.status(201).send({"mes":"login successfull","token":token});
                 }else{
                     res.status(500).send("wrong credentials")
@@ -54,6 +54,14 @@ router.post("/login",async(req, res) => {
     }
 })
 
+router.get('/:id', async(req, res) => {
+   try{
+       const note=await Notes.findById(req.params.id).lean().exec();
+       res.status(200).send(note);
+   }catch(err){
+       res.status(500).send({message:err.message})
+   }
+})
 
 
 // router.get("/data",async(req, res) => {
