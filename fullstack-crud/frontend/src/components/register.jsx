@@ -15,9 +15,24 @@ const Register=()=>{
             password,
             age
           }
-          console.log(payload)
-      }
+        //   console.log(payload)
 
+          fetch("http://localhost:5000/users/register",{
+             method:"POST",
+             body:JSON.stringify(payload),
+             headers:{
+                "Content-type": "application/json"
+             }
+          })
+          .then(res=>res.json())
+          .then(res=>console.log(res))
+          .catch(err=>console.log(err))
+      }
+    //   fetch("http://localhost:5000/users/")
+    //   .then(res=>
+    //    res.json())
+    //  .then(res=>console.log(res))
+    //  .catch(err=>console.log(err))
     return(
         <>
            <h1>this is Register page</h1>
