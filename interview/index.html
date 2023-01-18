@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<title>Online CSS Editor</title>
+<head>
+<style>
+
+.cylinder-outer {
+  width: 120px;
+  background: red;
+  border-radius: 15px;
+  height: 30px;
+  position: relative;
+}
+
+.cylinder-outer::after {
+  content: '';
+  background: black;
+  border-radius: 15px;
+  width: 30px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+
+</style>
+</head>
+<body>
+<div class="cylinder-outer"></div>
+</body>
+</html>
