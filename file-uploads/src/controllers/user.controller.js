@@ -16,7 +16,6 @@ router.get('/',async(req, res)=>{
 
 router.post('',uploads.single("profilePic"),async(req, res)=>{
     try{
-     
         // console.log(req.body);
         // console.log(req.file)
          const user=await User.create({
@@ -48,7 +47,6 @@ router.post('/multiple',uploads.any("profilePic"),async(req, res)=>{
         res.status(500).send({error:error.message});
      }
 })
-
 
 
 module.exports=router;

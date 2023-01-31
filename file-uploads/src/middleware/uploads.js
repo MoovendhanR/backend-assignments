@@ -14,11 +14,6 @@ const storage = multer.diskStorage({
 
   function fileFilter (req, file, callback) {
 
-    // The function should call `callback` with a boolean
-    // to indicate if the file should be accepted
-  
-    // To reject this file pass `false`, like so:
-
     if(file.mimetype === "image/jpeg" || file.mimetype === "image/png"){
        
         callback(null, true)
@@ -27,10 +22,6 @@ const storage = multer.diskStorage({
         callback(null, false)
         
     }
-  
-    // To accept the file pass `true`, like so:
-  
-    // You can always pass an error if something goes wrong:
      callback(new Error('I don\'t have a clue!'))
   
   }
